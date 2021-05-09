@@ -2,6 +2,8 @@
 
 .NET Core library for interacting with the PodcastIndex.org API.
 
+Currently just supports reading from the API.
+
 ## Getting Started
 
 Install this library from nuget:
