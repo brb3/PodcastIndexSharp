@@ -7,36 +7,11 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/PodcastIndexSharp.Tests/PodcastIndexSharp.Tests.csproj",
+                "${workspaceFolder}/PodcastIndexSharp.Example/PodcastIndexSharp.Example.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/PodcastIndexSharp.Tests/PodcastIndexSharp.Tests.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "${workspaceFolder}/PodcastIndexSharp.Tests/PodcastIndexSharp.Tests.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        }
     ]
 }

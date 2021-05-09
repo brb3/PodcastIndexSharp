@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<ProjectReference Include="..\PodcastIndexSharp\PodcastIndexSharp.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ContentWithTargetPath Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>appsettings.json</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>
+	<ItemGroup>
+		<ContentWithTargetPath Include="appsettings.local.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>appsettings.local.json</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+</Project>

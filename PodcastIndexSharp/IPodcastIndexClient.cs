@@ -1,7 +1,9 @@
 namespace PodcastIndexSharp
 {
     using System;
+    using System.Threading.Tasks;
     using PodcastIndexSharp.Enums;
+    using PodcastIndexSharp.Response;
 
     public interface IPodcastIndexClient
     {
@@ -24,7 +26,7 @@ namespace PodcastIndexSharp
         /// If not provided, field value is truncated to 100 words.
         /// </param>
         /// <returns></returns>
-        Response Search(string term, SearchByTermValues val, bool clean, bool fulltext);
+        Task<FeedsResponse> Search(string term, SearchByTermValues? val = null, bool clean = false, bool fulltext = false);
 
         /// <summary>
         /// Search the index.<br />
@@ -36,7 +38,7 @@ namespace PodcastIndexSharp
         /// If not provided, field value is truncated to 100 words.
         /// </param>
         /// <returns></returns>
-        Response Search(string person, bool fulltext);
+        Task<EpisodesResponse> SearchByPerson(string person, bool fulltext = false);
 
         /// <summary>
         /// Find details about a Podcast and its feed.<br />
@@ -45,7 +47,7 @@ namespace PodcastIndexSharp
         /// <param name="id">The PodcastIndex Feed ID or iTunes ID to search for.</param>
         /// <param name="itunes">If true, the id parameter is handled as an iTunes ID.</param>
         /// <returns></returns>
-        Response Podcast(int id, bool itunes);
+        Task<PodcastResponse> Podcast(int id, bool itunes);
 
         /// <summary>
         /// Find details about a Podcast and its feed.<br />
@@ -53,7 +55,7 @@ namespace PodcastIndexSharp
         /// </summary>
         /// <param name="url">Podcast feed URL.</param>
         /// <returns></returns>
-        Response Podcast(string url);
+        Task<PodcastResponse> Podcast(Uri url);
 
         /// <summary>
         /// Find details about a Podcast and its feed.<br />
@@ -81,13 +83,13 @@ namespace PodcastIndexSharp
         /// The `category` and `excludeCategory` filters can be used together to fine tune a very specific result set.
         /// </param>
         /// <returns></returns>
-        Response TrendingPodcasts(int max, DateTime since, string lang, string category, string excludeCategory);
+        Task<TrendingResponse> TrendingPodcasts(int max, string lang = null, string category = null, string excludeCategory = null, DateTime? since = null);
 
         /// <summary>
         /// This call returns all feeds that have been marked dead.
         /// </summary>
         /// <returns></returns>
-        Response DeadPodcasts();
+        Task<DeadResponse> DeadPodcasts();
 
         /// <summary>
         /// Find details about one or more episodes of a podcast.
@@ -101,7 +103,7 @@ namespace PodcastIndexSharp
         /// </param>
         /// <param name="itunes">If true, the id parameter is handled as an iTunes ID.</param>
         /// <returns></returns>
-        Response Episodes(int id, int max, DateTime since, bool fulltext, bool itunes);
+        Task<EpisodesResponse> Episodes(int id, int max, bool fulltext = false, bool itunes = false, DateTime? since = null);
 
         /// <summary>
         /// Find details about one or more episodes of the specified podcasts.
@@ -114,7 +116,7 @@ namespace PodcastIndexSharp
         /// If not provided, field value is truncated to 100 words.
         /// </param>
         /// <returns></returns>
-        Response Episodes(int[] id, int max, DateTime since, bool fulltext);
+        Task<EpisodesResponse> Episodes(int[] id, int max, bool fulltext = false, bool itunes = false, DateTime? since = null);
 
         /// <summary>
         /// Find details about one or more episodes of a podcast.<br />
@@ -129,7 +131,7 @@ namespace PodcastIndexSharp
         /// If not provided, field value is truncated to 100 words.
         /// </param>
         /// <returns></returns>
-        Response Episodes(string url, int max, DateTime since, bool fulltext);
+        Task<EpisodesResponse> Episodes(string url, int max, bool fulltext = false, DateTime? since = null);
 
         /// <summary>
         /// Find details about one episode of a podcast.<br />
@@ -140,7 +142,7 @@ namespace PodcastIndexSharp
         /// If not provided, field value is truncated to 100 words.
         /// </param>
         /// <returns></returns>
-        Response Episode(int id, bool fulltext);
+        Task<EpisodeResponse> Episode(int id, bool fulltext = false);
 
         /// <summary>
         /// This call returns a random batch of episodes, in no specific order.
@@ -170,7 +172,7 @@ namespace PodcastIndexSharp
         /// </param>
         /// <param name="max">Maximum number of results to return. &gt;=1 and &lt;= 1000</param>
         /// <returns></returns>
-        Response RandomEpisodes(string lang, string category, string excludeCategory, bool fulltext, int max = 1);
+        Task<EpisodesResponse> RandomEpisodes(string lang = "", string category = "", string excludeCategory = "", bool fulltext = false, int max = 1);
 
         /// <summary>
         /// This call returns the most recent max number of episodes globally across the whole index,
@@ -191,7 +193,7 @@ namespace PodcastIndexSharp
         /// </param>
         /// <param name="max">Maximum number of results to return. &gt;=1 and &lt;= 1000</param>
         /// <returns></returns>
-        Response RecentEpisodes(string exclude, int beforeId, bool fulltext, int max = 10);
+        Task<RecentEpisodesResponse> RecentEpisodes(string exclude = "", bool fulltext = false, int max = 10, int? beforeId = null);
 
         /// <summary>
         /// This call returns the most recent max feeds, in reverse chronological order.
@@ -218,22 +220,21 @@ namespace PodcastIndexSharp
         /// </param>
         /// <param name="max">Maximum number of results to return. &gt;= 1 and &lt;= 1000</param>
         /// <returns></returns>
-        Response RecentFeeds(DateTime since, string lang, string category, string excludeCategory, int max = 40);
-
+        Task<FeedsResponse> RecentFeeds(string lang = "", string category = "", string excludeCategory = "", int max = 40, DateTime? since = null);
         /// <summary>
         /// This call returns every new feed added to the index over the past 24 hours in reverse chronological order.
         /// </summary>
         /// <param name="since">Return items since the specified time.</param>
         /// <param name="max">Maximum number of results to return. &gt;= 1 and &lt;= 1000</param>
         /// <returns></returns>
-        Response NewFeeds(DateTime since, int max = 40);
+        Task<FeedsResponse> NewFeeds(int max = 40, DateTime? since = null);
 
         /// <summary>
         /// This call returns the most recent max soundbites that the index has discovered.
         /// </summary>
         /// <param name="max">Maximum number of soundbites to return. &gt;=1 and &lt;= 1000</param>
         /// <returns></returns>
-        Response RecentSoundbites(int max = 60);
+        Task<SoundbitesResponse> RecentSoundbites(int max = 60);
 
         /// <summary>
         /// The podcast's "Value for Value" information<br />
@@ -242,7 +243,7 @@ namespace PodcastIndexSharp
         /// </summary>
         /// <param name="id">The PodcastIndex Feed ID to search for.</param>
         /// <returns></returns>
-        Response Value(int id);
+        Task<ValueResponse> Value(int id);
 
         /// <summary>
         /// The podcast's "Value for Value" information<br />
@@ -251,35 +252,13 @@ namespace PodcastIndexSharp
         /// </summary>
         /// <param name="url">Podcast feed URL.</param>
         /// <returns></returns>
-        Response Value(string url);
+        Task<ValueResponse> Value(string url);
 
         /// <summary>
         /// Statistics for items in the Podcast Index<br />
         /// Return the most recent index statistics.
         /// </summary>
         /// <returns></returns>
-        Response Stats();
-
-        /// <summary>
-        /// Add new podcast feeds to the index.<br />
-        /// This call adds a podcast to the index using its feed url. If a feed already exists,
-        /// you will get its existing Feed ID returned.
-        /// </summary>
-        /// <param name="url">Podcast feed URL</param>
-        /// <param name="itunesId">
-        /// If this parameter is given, and the existing feed has no associated iTunes ID, it will be associated with
-        /// this ID. If an existing iTunes ID is already associated with this feed it will NOT be changed.
-        /// </param>
-        /// <returns></returns>
-        Response Add(string url, int itunesId);
-
-        /// <summary>
-        /// Add new podcast feeds to the index.<br />
-        /// This call adds a podcast to the index using its iTunes ID.
-        /// If a feed already exists, it will be noted in the response.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Response Add(int id);
+        Task<StatsResponse> Stats();
     }
 }
