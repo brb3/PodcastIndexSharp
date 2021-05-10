@@ -1,6 +1,6 @@
 # PodcastIndexSharp
 
-.NET Core library for interacting with the PodcastIndex.org API.
+.NET Standard client library for interacting with the PodcastIndex.org API.
 
 Currently just supports reading from the API.
 

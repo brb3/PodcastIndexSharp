@@ -6,7 +6,7 @@
     <Version>0.1.0</Version>
     <Authors>Bobby Burden III</Authors>
     <Company>brb3</Company>
-    <Description>.NET Core library for interacting with the PodcastIndex.org API.</Description>
+    <Description>.NET Standard client library for interacting with the PodcastIndex.org API.</Description>
     <RepositoryUrl>https://gitlab.com/brb3/podcastindexsharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
