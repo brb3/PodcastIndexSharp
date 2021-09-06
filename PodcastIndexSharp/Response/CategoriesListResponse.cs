@@ -4,10 +4,10 @@ namespace PodcastIndexSharp.Response
     using Newtonsoft.Json;
     using PodcastIndexSharp.Model;
 
-    public class FeedsResponse : AbstractResponse
+    public class CategoriesListResponse : AbstractResponse
     {
         [JsonProperty("feeds")]
-        public List<Podcast> Podcasts { get; set; } = new List<Podcast>();
+        public List<Category> Categories { get; set; }
 
         public int Count { get; set; }
     }

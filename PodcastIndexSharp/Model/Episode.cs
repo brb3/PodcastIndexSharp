@@ -29,7 +29,7 @@ namespace PodcastIndexSharp.Model
 
         public long EnclosureLength { get; set; }
 
-        public int Minutes { get; set; }
+        public int? Duration { get; set; }
 
         public Explicit Explicit { get; set; }
 
@@ -38,13 +38,15 @@ namespace PodcastIndexSharp.Model
 
         public string EpisodeType { get; set; }
 
-        public int Season { get; set; }
+        public int? Season { get; set; }
 
         public Uri Image { get; set; }
 
         public int? FeedItunesId { get; set; }
 
-        public int FeedId { get; set; }
+        public Uri FeedImage { get; set; }
+
+        public int? FeedId { get; set; }
 
         public Uri FeedUrl { get; set; }
 

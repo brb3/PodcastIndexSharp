@@ -28,6 +28,22 @@ Update your `appsettings.json` and add the following object:
     }
 ```
 
-Now just include the `IPodcastIndexClient` in your constructors and make calls.
+Now just include the `IPodcastIndex` in your constructors and make calls.
 
-For a list of examples, see the `PodcastIndexSharp.Example` project.
+## Examples
+
+In these examples `podcastIndex` is an instance of `IPodcastIndex` set by Dependency Injection.
+To get the top 10 trending podcasts:
+
+```c#
+var trendingPodcasts = podcastIndex.Podcasts().Trending(10);
+```
+
+Or for a specific Podcast by its feed ID:
+
+```c#
+var batmanUniversityPodcast = podcastIndex.Podcasts().ByFeedId(75075);
+Console.WriteLine(batmanUniversityPodcast.Author) // Tony Sindelar
+```
+
+For a further list of examples, see the `PodcastIndexSharp.Example` project.
