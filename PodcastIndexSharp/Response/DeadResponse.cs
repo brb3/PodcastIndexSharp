@@ -8,7 +8,8 @@ namespace PodcastIndexSharp.Response
 
     public class DeadResponse : AbstractResponse
     {
-        public List<FeedBase> Feeds { get; set; }
+        [JsonProperty("feeds")]
+        public List<Podcast> Podcasts { get; set; }
 
         public int Count { get; set; }
 

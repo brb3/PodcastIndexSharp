@@ -8,10 +8,10 @@ namespace PodcastIndexSharp.Model
 
         public string Author { get; set; }
 
-        public int? iTunesId { get; set; }
+        public uint? iTunesId { get; set; }
 
         public string Language { get; set; }
 
-        public Dictionary<string, string> Categories { get; set; }
+        public Dictionary<uint, string> Categories { get; set; }
     }
 }

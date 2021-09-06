@@ -19,7 +19,7 @@ namespace PodcastIndexSharp
             config.GetSection(PodcastIndexConfig.Section).Bind(podcastIndexConfig);
 
             services.AddSingleton<PodcastIndexConfig>(podcastIndexConfig);
-            services.AddSingleton<IPodcastIndexClient, PodcastIndexClient>();
+            services.AddSingleton<IPodcastIndex, PodcastIndex>();
 
             return services;
         }

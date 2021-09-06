@@ -1,9 +1,11 @@
 namespace PodcastIndexSharp.Response
 {
+    using Newtonsoft.Json;
     using PodcastIndexSharp.Model;
 
     public class PodcastResponse : AbstractResponse
     {
-        public Feed Feed { get; set; }
+        [JsonProperty("feed")]
+        public Podcast Podcast { get; set; }
     }
 }
