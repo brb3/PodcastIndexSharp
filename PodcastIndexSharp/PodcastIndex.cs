@@ -18,76 +18,36 @@ namespace PodcastIndexSharp
 
         private ICategoriesClient CategoriesClient { get; set; }
 
-        public PodcastIndex(PodcastIndexConfig config) : base(config) { }
-
-        public ISearchClient Search()
+        public PodcastIndex(PodcastIndexConfig config,
+            ISearchClient searchClient,
+            IPodcastsClient podcastsClient,
+            IEpisodesClient episodesClient,
+            IRecentClient recentClient,
+            IValueClient valueClient,
+            IStatsClient statsClient,
+            ICategoriesClient categoriesClient) : base(config)
         {
-            if (SearchClient == null)
-            {
-                SearchClient = new SearchClient(Config);
-            }
-
-            return SearchClient;
+            SearchClient = searchClient;
+            PodcastsClient = podcastsClient;
+            EpisodesClient = episodesClient;
+            RecentClient = recentClient;
+            ValueClient = valueClient;
+            StatsClient = statsClient;
+            CategoriesClient = categoriesClient;
         }
 
-        public IPodcastsClient Podcasts()
-        {
-            if (PodcastsClient == null)
-            {
-                PodcastsClient = new PodcastsClient(Config);
-            }
+        public ISearchClient Search() => SearchClient;
 
-            return PodcastsClient;
-        }
+        public IPodcastsClient Podcasts() => PodcastsClient;
 
-        public IEpisodesClient Episodes()
-        {
-            if (EpisodesClient == null)
-            {
-                EpisodesClient = new EpisodesClient(Config);
-            }
+        public IEpisodesClient Episodes() => EpisodesClient;
 
-            return EpisodesClient;
-        }
+        public IRecentClient Recent() => RecentClient;
 
-        public IRecentClient Recent()
-        {
-            if (RecentClient == null)
-            {
-                RecentClient = new RecentClient(Config);
-            }
+        public IValueClient Value() => ValueClient;
 
-            return RecentClient;
-        }
+        public IStatsClient Stats() => StatsClient;
 
-        public IValueClient Value()
-        {
-            if (ValueClient == null)
-            {
-                ValueClient = new ValueClient(Config);
-            }
-
-            return ValueClient;
-        }
-
-        public IStatsClient Stats()
-        {
-            if (StatsClient == null)
-            {
-                StatsClient = new StatsClient(Config);
-            }
-
-            return StatsClient;
-        }
-
-        public ICategoriesClient Categories()
-        {
-            if (CategoriesClient == null)
-            {
-                CategoriesClient = new CategoriesClient(Config);
-            }
-
-            return CategoriesClient;
-        }
+        public ICategoriesClient Categories() => CategoriesClient;
     }
 }
