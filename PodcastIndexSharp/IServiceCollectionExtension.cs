@@ -2,6 +2,7 @@ namespace PodcastIndexSharp
 {
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using PodcastIndexSharp.Clients;
 
     public static class IServiceCollectionExtension
     {
@@ -19,6 +20,13 @@ namespace PodcastIndexSharp
             config.GetSection(PodcastIndexConfig.Section).Bind(podcastIndexConfig);
 
             services.AddSingleton<PodcastIndexConfig>(podcastIndexConfig);
+            services.AddSingleton<ICategoriesClient, CategoriesClient>();
+            services.AddSingleton<IEpisodesClient, EpisodesClient>();
+            services.AddSingleton<IPodcastsClient, PodcastsClient>();
+            services.AddSingleton<IRecentClient, RecentClient>();
+            services.AddSingleton<ISearchClient, SearchClient>();
+            services.AddSingleton<IStatsClient, StatsClient>();
+            services.AddSingleton<IValueClient, ValueClient>();
             services.AddSingleton<IPodcastIndex, PodcastIndex>();
 
             return services;
