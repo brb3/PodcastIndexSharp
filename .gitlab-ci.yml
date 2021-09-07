@@ -1,0 +1,19 @@
+image: mcr.microsoft.com/dotnet/sdk:latest
+
+stages:
+    - lint
+    - build
+
+before_script:
+    - "dotnet restore"
+    - "dotnet tool restore"
+
+lint:
+    stage: lint
+    script:
+        - "dotnet tool run dotnet-format -wsa --check"
+
+build:
+    stage: build
+    script:
+        - "dotnet build"

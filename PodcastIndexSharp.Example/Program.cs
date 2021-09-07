@@ -28,12 +28,11 @@ namespace Example
             RunExamples(podcastIndex).GetAwaiter().GetResult();
         }
 
-        static IHostBuilder CreateHostBuilder(string[] args, IConfiguration config) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureServices((_, services) =>
-                    // Calling the AddPodcastIndexSharp extension method and passing in our application's configuration
-                    services.AddPodcastIndexSharp(config)
-                );
+        static IHostBuilder CreateHostBuilder(string[] args, IConfiguration config)
+        {
+            // Calling the AddPodcastIndexSharp extension method and passing in our application's configuration
+            return Host.CreateDefaultBuilder(args).ConfigureServices((_, services) => services.AddPodcastIndexSharp(config));
+        }
 
         static async Task RunExamples(IPodcastIndex podcastIndex)
         {
