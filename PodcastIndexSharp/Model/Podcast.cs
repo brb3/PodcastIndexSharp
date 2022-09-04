@@ -33,7 +33,7 @@ namespace PodcastIndexSharp.Model
         public DateTime LastGoodHttpStatusCode { get; set; }
 
         [JsonConverter(typeof(UnixTimestampConverter))]
-        public DateTime NewestItemPublishedTime { get; set; }
+        public DateTime NewestItemPublishTime { get; set; }
 
         public HttpStatusCode LastHttpStatus { get; set; }
 
