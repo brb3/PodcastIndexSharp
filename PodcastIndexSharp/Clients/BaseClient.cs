@@ -50,7 +50,7 @@ namespace PodcastIndexSharp.Clients
         {
             if (dateTime == null)
             {
-                return "";
+                return string.Empty;
             }
 
             var dto = (DateTimeOffset)dateTime;

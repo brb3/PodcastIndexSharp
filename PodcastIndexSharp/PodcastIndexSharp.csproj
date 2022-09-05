@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>PodcastIndexSharp</PackageId>
     <PackageIcon>package-icon.png</PackageIcon>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Authors>Bobby Burden III</Authors>
     <Company>brb3</Company>
     <Description>.NET Standard client library for interacting with the PodcastIndex.org API.</Description>
