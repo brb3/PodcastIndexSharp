@@ -1,5 +1,6 @@
 namespace PodcastIndexSharp.Test.Clients;
 using System;
+using Flurl;
 using Flurl.Http;
 using PodcastIndexSharp.Clients;
 using Xunit;
@@ -37,6 +38,25 @@ public class BaseClientTest
         };
 
         baseClient = new ExposedBaseClient(podcastIndexConfig);
+    }
+
+    [Fact]
+    public void GetAuthorizedRequestTest()
+    {
+        var path = "testPath";
+
+        // Should return a FlurlRequest
+        var request = baseClient.GetAuthorizedRequest(path);
+        Assert.IsType<FlurlRequest>(request);
+
+        // With a URL set
+        Assert.IsType<Url>(request.Url);
+        Assert.Equal($"https://example.com/{path}", request.Url.ToString());
+
+        // With headers in place
+        Assert.Equal(4, request.Headers.Count);
+        Assert.True(request.Headers.Contains("User-Agent", podcastIndexConfig.UserAgent));
+        Assert.True(request.Headers.Contains("X-Auth-Key", podcastIndexConfig.AuthKey));
     }
 
     [Fact]
