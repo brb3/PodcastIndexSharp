@@ -1,9 +1,8 @@
+namespace PodcastIndexSharp.Test.Clients;
 using System;
 using Flurl.Http;
 using PodcastIndexSharp.Clients;
 using Xunit;
-
-namespace PodcastIndexSharp.Test.Clients;
 
 internal class ExposedBaseClient : BaseClient
 {
