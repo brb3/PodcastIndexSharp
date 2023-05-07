@@ -4,8 +4,10 @@ namespace PodcastIndexSharp.Clients
     using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
+    using System.Threading.Tasks;
     using Flurl;
     using Flurl.Http;
+    using PodcastIndexSharp.Exceptions;
 
     public class BaseClient
     {
@@ -56,6 +58,29 @@ namespace PodcastIndexSharp.Clients
             var dto = (DateTimeOffset)dateTime;
 
             return dto.ToUnixTimeSeconds().ToString();
+        }
+
+        /// <summary>
+        /// A wrapper around Flurl's GetJsonAsync to act as a convenience around Status checks and network failures.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="ResponseException">Thrown when the API has a "false" status message.</exception>
+        /// <exception cref="NetworkException">Thrown when there is a network level failure communicating with the API.</exception>
+        protected async Task<T> GetResponse<T>(IFlurlRequest request) where T : AbstractResponse
+        {
+            try {
+                var response = await request.GetJsonAsync<T>();
+
+                if (response.Status == "false") {
+                    throw new ResponseException($"Call to {request.Url} failed.");
+                }
+
+                return response;
+            } catch (FlurlHttpException e) {
+                throw new NetworkException(e);
+            }
         }
     }
 }
