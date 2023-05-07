@@ -14,7 +14,7 @@ namespace PodcastIndexSharp.Clients
         {
             var endpoint = GetAuthorizedRequest("/categories/list");
 
-            var categoriesListResponse = await endpoint.GetJsonAsync<CategoriesListResponse>();
+            var categoriesListResponse = await GetResponse<CategoriesListResponse>(endpoint);
 
             return categoriesListResponse.Categories;
         }

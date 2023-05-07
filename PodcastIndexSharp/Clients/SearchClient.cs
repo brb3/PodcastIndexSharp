@@ -31,8 +31,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("fulltext", "");
             }
 
-            var feedResponse = await endpoint.GetJsonAsync<FeedsResponse>();
-
+            var feedResponse = await GetResponse<FeedsResponse>(endpoint);
             return feedResponse.Podcasts;
         }
 
@@ -46,7 +45,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("fulltext", "");
             }
 
-            var episodeResponse = await endpoint.GetJsonAsync<EpisodesResponse>();
+            var episodeResponse = await GetResponse<EpisodesResponse>(endpoint);
 
             return episodeResponse.Episodes;
         }

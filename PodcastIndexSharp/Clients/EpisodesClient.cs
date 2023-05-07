@@ -37,7 +37,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("fulltext", "");
             }
 
-            var episodesResponse = await endpoint.GetJsonAsync<EpisodesResponse>();
+            var episodesResponse = await GetResponse<EpisodesResponse>(endpoint);
 
             return episodesResponse.Episodes;
         }
@@ -57,7 +57,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("fulltext", "");
             }
 
-            var episodeResponse = await endpoint.GetJsonAsync<EpisodeResponse>();
+            var episodeResponse = await GetResponse<EpisodeResponse>(endpoint);
 
             return episodeResponse.Episode;
         }
@@ -87,7 +87,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("fulltext", "");
             }
 
-            var episodesResponse = await endpoint.GetJsonAsync<EpisodesResponse>();
+            var episodesResponse = await GetResponse<EpisodesResponse>(endpoint);
 
             return episodesResponse.Episodes;
         }
@@ -109,7 +109,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("fulltext", "");
             }
 
-            var episodeResponse = await endpoint.GetJsonAsync<EpisodesResponse>();
+            var episodeResponse = await GetResponse<EpisodesResponse>(endpoint);
 
             return episodeResponse.Episodes;
         }

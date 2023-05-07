@@ -13,7 +13,7 @@ namespace PodcastIndexSharp.Clients
         {
             var endpoint = GetAuthorizedRequest("stats/current");
 
-            var statsResponse = await endpoint.GetJsonAsync<StatsResponse>();
+            var statsResponse = await GetResponse<StatsResponse>(endpoint);
 
             return statsResponse.Stats;
         }

@@ -15,7 +15,7 @@ namespace PodcastIndexSharp.Clients
             var endpoint = GetAuthorizedRequest("value/byfeedid")
                 .SetQueryParam("id", id);
 
-            var valueResponse = await endpoint.GetJsonAsync<ValueResponse>();
+            var valueResponse = await GetResponse<ValueResponse>(endpoint);
 
             return valueResponse.Value;
         }
@@ -25,7 +25,7 @@ namespace PodcastIndexSharp.Clients
             var endpoint = GetAuthorizedRequest("value/byfeedurl")
                 .SetQueryParam("url", url);
 
-            var valueResponse = await endpoint.GetJsonAsync<ValueResponse>();
+            var valueResponse = await GetResponse<ValueResponse>(endpoint);
 
             return valueResponse.Value;
         }

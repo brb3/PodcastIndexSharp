@@ -16,7 +16,7 @@ namespace PodcastIndexSharp.Clients
             var endpoint = GetAuthorizedRequest("podcasts/byfeedid")
                 .SetQueryParam("id", id);
 
-            var podcastResponse = await endpoint.GetJsonAsync<PodcastResponse>();
+            var podcastResponse = await GetResponse<PodcastResponse>(endpoint);
 
             return podcastResponse.Podcast;
         }
@@ -26,7 +26,7 @@ namespace PodcastIndexSharp.Clients
             var endpoint = GetAuthorizedRequest("podcasts/byfeedurl")
                     .SetQueryParam("url", url);
 
-            var podcastResponse = await endpoint.GetJsonAsync<PodcastResponse>();
+            var podcastResponse = await GetResponse<PodcastResponse>(endpoint);
 
             return podcastResponse.Podcast;
         }
@@ -36,7 +36,7 @@ namespace PodcastIndexSharp.Clients
             var endpoint = GetAuthorizedRequest("podcasts/byitunesid")
                 .SetQueryParam("id", id);
 
-            var podcastResponse = await endpoint.GetJsonAsync<PodcastResponse>();
+            var podcastResponse = await GetResponse<PodcastResponse>(endpoint);
 
             return podcastResponse.Podcast;
         }
@@ -66,7 +66,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("excludeCategory", excludeCategory);
             }
 
-            var trendingResponse = await endpoint.GetJsonAsync<TrendingResponse>();
+            var trendingResponse = await GetResponse<TrendingResponse>(endpoint);
 
             return trendingResponse.Podcasts;
         }
@@ -75,7 +75,7 @@ namespace PodcastIndexSharp.Clients
         {
             var endpoint = GetAuthorizedRequest("podcasts/dead");
 
-            var deadResponse = await endpoint.GetJsonAsync<DeadResponse>();
+            var deadResponse = await GetResponse<DeadResponse>(endpoint);
 
             return deadResponse.Podcasts;
         }
@@ -85,7 +85,7 @@ namespace PodcastIndexSharp.Clients
             var endpoint = GetAuthorizedRequest("podcasts/byguid")
                 .SetQueryParam("guid", guid);
 
-            var podcastResponse = await endpoint.GetJsonAsync<PodcastResponse>();
+            var podcastResponse = await GetResponse<PodcastResponse>(endpoint);
 
             return podcastResponse.Podcast;
         }

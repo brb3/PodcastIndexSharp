@@ -31,7 +31,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("fulltext", "");
             }
 
-            var recentEpisodesResponse = await endpoint.GetJsonAsync<RecentEpisodesResponse>();
+            var recentEpisodesResponse = await GetResponse<RecentEpisodesResponse>(endpoint);
 
             return recentEpisodesResponse.Episodes;
         }
@@ -61,7 +61,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("since", ToUnixTimeStamp(since));
             }
 
-            var feedsResponse = await endpoint.GetJsonAsync<FeedsResponse>();
+            var feedsResponse = await GetResponse<FeedsResponse>(endpoint);
 
             return feedsResponse.Podcasts;
         }
@@ -76,7 +76,7 @@ namespace PodcastIndexSharp.Clients
                 endpoint.SetQueryParam("since", ToUnixTimeStamp(since));
             }
 
-            var feedsResponse = await endpoint.GetJsonAsync<FeedsResponse>();
+            var feedsResponse = await GetResponse<FeedsResponse>(endpoint);
 
             return feedsResponse.Podcasts;
         }
@@ -86,7 +86,7 @@ namespace PodcastIndexSharp.Clients
             var endpoint = GetAuthorizedRequest("recent/soundbites")
                 .SetQueryParam("max", max);
 
-            var soundbitesResponse = await endpoint.GetJsonAsync<SoundbitesResponse>();
+            var soundbitesResponse = await GetResponse<SoundbitesResponse>(endpoint);
 
             return soundbitesResponse.Soundbites;
         }
