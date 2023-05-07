@@ -22,21 +22,12 @@ internal class ExposedBaseClient : BaseClient
     }
 }
 
-public class BaseClientTest
+public class BaseClientTest : ClientTest
 {
-    private PodcastIndexConfig podcastIndexConfig;
     private ExposedBaseClient baseClient;
 
     public BaseClientTest()
     {
-        podcastIndexConfig = new PodcastIndexConfig()
-        {
-            BaseUrl = "https://example.com/",
-            UserAgent = "Test",
-            AuthKey = "1234567890",
-            Secret = "abcdefg"
-        };
-
         baseClient = new ExposedBaseClient(podcastIndexConfig);
     }
 

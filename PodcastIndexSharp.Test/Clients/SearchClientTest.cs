@@ -1,28 +1,16 @@
 namespace PodcastIndexSharp.Test.Clients;
 
 using System.Threading.Tasks;
-using Flurl.Http.Testing;
 using PodcastIndexSharp.Clients;
 using PodcastIndexSharp.Exceptions;
 using Xunit;
 
-public class SearchClientTest
+public class SearchClientTest : ClientTest
 {
-    private PodcastIndexConfig podcastIndexConfig;
-
     private SearchClient searchClient;
-
-    private HttpTest httpTest = new HttpTest();
 
     public SearchClientTest()
     {
-        podcastIndexConfig = new PodcastIndexConfig()
-        {
-            BaseUrl = "https://example.com/",
-            UserAgent = "Test",
-            AuthKey = "1234567890",
-            Secret = "abcdefg"
-        };
         searchClient = new SearchClient(podcastIndexConfig);
     }
 
