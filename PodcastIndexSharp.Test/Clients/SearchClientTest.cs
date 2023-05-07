@@ -1,11 +1,9 @@
 namespace PodcastIndexSharp.Test.Clients;
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Flurl.Http.Testing;
 using PodcastIndexSharp.Clients;
 using PodcastIndexSharp.Exceptions;
-using PodcastIndexSharp.Model;
 using Xunit;
 
 public class SearchClientTest
@@ -20,12 +18,12 @@ public class SearchClientTest
     {
         podcastIndexConfig = new PodcastIndexConfig()
         {
-            BaseUrl="https://example.com/",
-            UserAgent="Test",
-            AuthKey="1234567890",
-            Secret="abcdefg"
+            BaseUrl = "https://example.com/",
+            UserAgent = "Test",
+            AuthKey = "1234567890",
+            Secret = "abcdefg"
         };
-        searchClient= new SearchClient(podcastIndexConfig);
+        searchClient = new SearchClient(podcastIndexConfig);
     }
 
     /// <summary>

@@ -2,7 +2,6 @@ namespace PodcastIndexSharp.Clients
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Flurl.Http;
     using PodcastIndexSharp.Model;
     using PodcastIndexSharp.Response;
 

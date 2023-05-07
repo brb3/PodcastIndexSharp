@@ -70,15 +70,19 @@ namespace PodcastIndexSharp.Clients
         /// <exception cref="NetworkException">Thrown when there is a network level failure communicating with the API.</exception>
         protected async Task<T> GetResponse<T>(IFlurlRequest request) where T : AbstractResponse
         {
-            try {
+            try
+            {
                 var response = await request.GetJsonAsync<T>();
 
-                if (response.Status == "false") {
+                if (response.Status == "false")
+                {
                     throw new ResponseException($"Call to {request.Url} failed.");
                 }
 
                 return response;
-            } catch (FlurlHttpException e) {
+            }
+            catch (FlurlHttpException e)
+            {
                 throw new NetworkException(e);
             }
         }

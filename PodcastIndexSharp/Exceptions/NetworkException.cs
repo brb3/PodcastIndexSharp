@@ -1,4 +1,5 @@
-namespace PodcastIndexSharp.Exceptions {
+namespace PodcastIndexSharp.Exceptions
+{
     using System;
 
     /// <summary>
