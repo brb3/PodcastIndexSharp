@@ -4,6 +4,7 @@ namespace PodcastIndexSharp.Clients
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Flurl.Http;
+    using PodcastIndexSharp.Enums;
     using PodcastIndexSharp.Model;
     using PodcastIndexSharp.Response;
 
@@ -88,6 +89,17 @@ namespace PodcastIndexSharp.Clients
             var podcastResponse = await GetResponse<PodcastResponse>(endpoint);
 
             return podcastResponse.Podcast;
+        }
+
+        public async Task<List<Podcast>> ByMedium(PodcastMedium medium, int max = 10)
+        {
+            var endpoint = GetAuthorizedRequest("podcasts/bymedium")
+                .SetQueryParam("medium", medium.ToString())
+                .SetQueryParam("max", max);
+
+            var feedsResponse = await GetResponse<FeedsResponse>(endpoint);
+
+            return feedsResponse.Podcasts;
         }
     }
 }

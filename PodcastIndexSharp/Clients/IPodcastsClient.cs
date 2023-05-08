@@ -3,6 +3,7 @@ namespace PodcastIndexSharp.Clients
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using PodcastIndexSharp.Enums;
     using PodcastIndexSharp.Model;
 
     public interface IPodcastsClient
@@ -38,6 +39,14 @@ namespace PodcastIndexSharp.Clients
         /// <param name="id">The feed's GUID.</param>
         /// <returns></returns>
         Task<Podcast> ByGUID(Guid guid);
+
+        /// <summary>
+        /// This call returns all feeds marked with the specified medium tag value.
+        /// </summary>
+        /// <param name="medium">The medium value to search for.</param>
+        /// <param name="max">Maximum number of results to return.</param>
+        /// <returns></returns>
+        Task<List<Podcast>> ByMedium(PodcastMedium medium, int max = 10);
 
         /// <summary>
         /// Find details about a Podcast and its feed.<br />
