@@ -49,5 +49,64 @@ namespace PodcastIndexSharp.Clients
 
             return episodeResponse.Episodes;
         }
+
+        public async Task<List<Podcast>> PodcastsByTitle(string query, SearchByTermValues? value = null, bool clean = false, bool fulltext = false, bool similar = false)
+        {
+            var endpoint = GetAuthorizedRequest("search/bytitle")
+                .SetQueryParam("q", query);
+
+            if (value != null)
+            {
+                endpoint.SetQueryParam("val", value.ToString());
+            }
+
+            if (clean)
+            {
+                endpoint.SetQueryParam("clean", "");
+            }
+
+            if (fulltext)
+            {
+                endpoint.SetQueryParam("fulltext", "");
+            }
+
+            if (similar)
+            {
+                endpoint.SetQueryParam("similar", "");
+            }
+
+            var feedResponse = await GetResponse<FeedsResponse>(endpoint);
+            return feedResponse.Podcasts;
+        }
+
+        public async Task<List<Podcast>> MusicPodcasts(string query, SearchByTermValues? value = null, bool iTunesOnly = false, int max = 10, bool clean = false, bool fulltext = false)
+        {
+            var endpoint = GetAuthorizedRequest("search/music/byterm")
+                .SetQueryParam("q", query)
+                .SetQueryParam("max", max);
+
+            if (value != null)
+            {
+                endpoint.SetQueryParam("val", value.ToString());
+            }
+
+            if (iTunesOnly)
+            {
+                endpoint.SetQueryParam("aponly", "true");
+            }
+
+            if (clean)
+            {
+                endpoint.SetQueryParam("clean", "");
+            }
+
+            if (fulltext)
+            {
+                endpoint.SetQueryParam("fulltext", "");
+            }
+
+            var feedResponse = await GetResponse<FeedsResponse>(endpoint);
+            return feedResponse.Podcasts;
+        }
     }
 }
