@@ -102,5 +102,32 @@ namespace PodcastIndexSharp.Clients
         /// <returns></returns>
         Task<List<Episode>> Random(string lang = "", string category = "", string excludeCategory = "", bool fulltext = false, int max = 1);
 
+        /// <summary>
+        /// Returns episodes known for a podcast by the <see href="https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid">Podcast GUID</see>.
+        /// </summary>
+        /// <param name="guid">
+        /// The GUID from the `podcast:guid` tag in the feed.
+        /// </param>
+        /// <param name="max">
+        /// Maximum number of results to return. &gt;=1 and &lt;= 1000
+        /// </param>
+        /// <param name="fulltext">
+        /// If present, return the full text value of any text fields (ex: description).<br />
+        /// If not provided, field value is truncated to 100 words.
+        /// </param>
+        /// <param name="since">
+        /// Return items since the specified time.
+        /// </param>
+        /// <returns></returns>
+        Task<List<Episode>> ByPodcastGUID(Guid guid, int max = 10, bool fulltext = false, DateTime? since = null);
+
+        /// <summary>
+        /// Get all episodes that have been found in the "podcast:liveitem" from the feeds
+        /// </summary>
+        /// <param name="max">
+        /// Maximum number of results to return. &gt;=1 and &lt;= 1000
+        /// </param>
+        /// <returns></returns>
+        Task<List<Episode>> Live(int max = 10);
     }
 }
