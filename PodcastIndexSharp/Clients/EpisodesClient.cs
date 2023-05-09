@@ -3,7 +3,6 @@ namespace PodcastIndexSharp.Clients
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Flurl.Http;
     using PodcastIndexSharp.Model;
     using PodcastIndexSharp.Response;
 
@@ -23,22 +22,14 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<List<Episode>> ByFeedUrl(Uri url, int max = 10, bool fulltext = false, DateTime? since = null)
         {
-            var endpoint = GetAuthorizedRequest("episodes/byfeedurl")
-                .SetQueryParam("url", url)
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("url", url),
+                new ApiParameter("max", max),
+                new ApiParameter("since", since),
+                new ApiParameter("fulltext", fulltext)
+            };
 
-            if (since != null)
-            {
-                endpoint.SetQueryParam("since", ToUnixTimeStamp(since));
-            }
-
-            if (fulltext)
-            {
-                endpoint.SetQueryParam("fulltext", "");
-            }
-
-            var episodesResponse = await GetResponse<EpisodesResponse>(endpoint);
-
+            var episodesResponse = await SendRequest<EpisodesResponse>("episodes/byfeedurl", parameters);
             return episodesResponse.Episodes;
         }
 
@@ -49,100 +40,64 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<Episode> ById(uint id, bool fulltext = false)
         {
-            var endpoint = GetAuthorizedRequest("episodes/byid")
-                .SetQueryParam("id", id);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("id", id),
+                new ApiParameter("fulltext", fulltext)
+            };
 
-            if (fulltext)
-            {
-                endpoint.SetQueryParam("fulltext", "");
-            }
-
-            var episodeResponse = await GetResponse<EpisodeResponse>(endpoint);
-
+            var episodeResponse = await SendRequest<EpisodeResponse>("episodes/byid", parameters);
             return episodeResponse.Episode;
         }
 
         public async Task<List<Episode>> Random(string lang = "", string category = "", string excludeCategory = "", bool fulltext = false, int max = 1)
         {
-            var endpoint = GetAuthorizedRequest("episodes/random")
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("lang", lang),
+                new ApiParameter("max", max),
+                new ApiParameter("category", category),
+                new ApiParameter("excludeCategory", excludeCategory),
+                new ApiParameter("fulltext", fulltext)
+            };
 
-            if (!string.IsNullOrEmpty(lang))
-            {
-                endpoint.SetQueryParam("lang", lang);
-            }
-
-            if (!string.IsNullOrEmpty(category))
-            {
-                endpoint.SetQueryParam("category", category);
-            }
-
-            if (!string.IsNullOrEmpty(excludeCategory))
-            {
-                endpoint.SetQueryParam("excludeCategory", excludeCategory);
-            }
-
-            if (fulltext)
-            {
-                endpoint.SetQueryParam("fulltext", "");
-            }
-
-            var episodesResponse = await GetResponse<EpisodesResponse>(endpoint);
-
+            var episodesResponse = await SendRequest<EpisodesResponse>("episodes/random", parameters);
             return episodesResponse.Episodes;
         }
 
         public async Task<List<Episode>> ByPodcastGUID(Guid guid, int max = 10, bool fulltext = false, DateTime? since = null)
         {
-            var endpoint = GetAuthorizedRequest("episodes/bypodcastguid")
-                .SetQueryParam("guid", guid)
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("guid", guid),
+                new ApiParameter("max", max),
+                new ApiParameter("since", since),
+                new ApiParameter("fulltext", fulltext)
+            };
 
-            if (fulltext)
-            {
-                endpoint.SetQueryParam("fulltext", "");
-            }
-
-            if (since != null)
-            {
-                endpoint.SetQueryParam("since", ToUnixTimeStamp(since));
-            }
-
-
-            var episodesResponse = await GetResponse<EpisodesResponse>(endpoint);
-
+            var episodesResponse = await SendRequest<EpisodesResponse>("episodes/bypodcastguid", parameters);
             return episodesResponse.Episodes;
         }
 
         public async Task<List<Episode>> Live(int max = 10)
         {
-            var endpoint = GetAuthorizedRequest("episodes/live")
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("max", max),
+            };
 
-            var episodesResponse = await GetResponse<EpisodesResponse>(endpoint);
-
+            var episodesResponse = await SendRequest<EpisodesResponse>("episodes/live", parameters);
             return episodesResponse.Episodes;
         }
 
         private async Task<List<Episode>> Episodes(string id, int max, bool fulltext, bool itunes, DateTime? since)
         {
-            var segment = itunes ? "episodes/byitunesid" : "episodes/byfeedid";
-            var endpoint = GetAuthorizedRequest(segment)
-                .SetQueryParam("id", id)
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("id", id),
+                new ApiParameter("max", max),
+                new ApiParameter("since", since),
+                new ApiParameter("fulltext", fulltext)
+            };
 
-            if (since != null)
-            {
-                endpoint.SetQueryParam("since", ToUnixTimeStamp(since));
-            }
-
-            if (fulltext)
-            {
-                endpoint.SetQueryParam("fulltext", "");
-            }
-
-            var episodeResponse = await GetResponse<EpisodesResponse>(endpoint);
-
+            var episodeResponse = await SendRequest<EpisodesResponse>(
+                itunes ? "episodes/byitunesid" : "episodes/byfeedid",
+                parameters);
             return episodeResponse.Episodes;
         }
     }

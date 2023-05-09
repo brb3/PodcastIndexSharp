@@ -11,10 +11,7 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<List<Category>> List()
         {
-            var endpoint = GetAuthorizedRequest("/categories/list");
-
-            var categoriesListResponse = await GetResponse<CategoriesListResponse>(endpoint);
-
+            var categoriesListResponse = await SendRequest<CategoriesListResponse>("categories/list", new ApiParameter[] { });
             return categoriesListResponse.Categories;
         }
     }

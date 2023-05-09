@@ -10,10 +10,7 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<Stats> Current()
         {
-            var endpoint = GetAuthorizedRequest("stats/current");
-
-            var statsResponse = await GetResponse<StatsResponse>(endpoint);
-
+            var statsResponse = await SendRequest<StatsResponse>("stats/current", new ApiParameter[] { });
             return statsResponse.Stats;
         }
     }

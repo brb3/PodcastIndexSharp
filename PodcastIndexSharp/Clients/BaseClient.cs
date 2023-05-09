@@ -8,6 +8,7 @@ namespace PodcastIndexSharp.Clients
     using Flurl;
     using Flurl.Http;
     using PodcastIndexSharp.Exceptions;
+    using PodcastIndexSharp.Model;
 
     /// <summary>
     /// The Base API client that all PodcastIndex API calls use. This class should not be used directly.
@@ -88,6 +89,51 @@ namespace PodcastIndexSharp.Clients
             {
                 throw new NetworkException(e);
             }
+        }
+
+        /// <summary>
+        /// Abstraction for clients to allow them to define a set of parameters and be handled
+        /// without needing custom checks in each client class.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="endpointFragment"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        protected async Task<T> SendRequest<T>(string endpointFragment, ApiParameter[] parameters) where T : AbstractResponse
+        {
+            var endpoint = GetAuthorizedRequest(endpointFragment);
+
+            foreach (var parameter in parameters)
+            {
+                if (parameter.Value == null)
+                {
+                    continue;
+                }
+
+                switch (Type.GetTypeCode(parameter.Value.GetType()))
+                {
+                    case TypeCode.Boolean:
+                        if ((bool)parameter.Value)
+                        {
+                            // Empty value toggles on. Omitting toggles off.
+                            endpoint.SetQueryParam(parameter.Name, "");
+                        }
+                        break;
+                    case TypeCode.DateTime:
+                        endpoint.SetQueryParam(parameter.Name, ToUnixTimeStamp((DateTime)parameter.Value));
+                        break;
+                    case TypeCode.String:
+                    case TypeCode.Int32:
+                    case TypeCode.UInt32:
+                        endpoint.SetQueryParam(parameter.Name, parameter.Value);
+                        break;
+                    default:
+                        endpoint.SetQueryParam(parameter.Name, parameter.Value.ToString());
+                        break;
+                }
+            }
+
+            return await GetResponse<T>(endpoint);
         }
     }
 }

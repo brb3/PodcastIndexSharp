@@ -3,7 +3,6 @@ namespace PodcastIndexSharp.Clients
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Flurl.Http;
     using PodcastIndexSharp.Model;
     using PodcastIndexSharp.Response;
 
@@ -13,81 +12,49 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<List<Episode>> Episodes(string exclude = "", bool fulltext = false, int max = 10, int? beforeId = null)
         {
-            var endpoint = GetAuthorizedRequest("recent/episodes")
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("max", max),
+                new ApiParameter("excludeString", exclude),
+                new ApiParameter("before", beforeId),
+                new ApiParameter("fulltext", fulltext),
+            };
 
-            if (!string.IsNullOrEmpty(exclude))
-            {
-                endpoint.SetQueryParam("exclude", exclude);
-            }
-
-            if (beforeId != null)
-            {
-                endpoint.SetQueryParam("beforeId", beforeId);
-            }
-
-            if (fulltext)
-            {
-                endpoint.SetQueryParam("fulltext", "");
-            }
-
-            var recentEpisodesResponse = await GetResponse<RecentEpisodesResponse>(endpoint);
-
+            var recentEpisodesResponse = await SendRequest<RecentEpisodesResponse>("recent/episodes", parameters);
             return recentEpisodesResponse.Episodes;
         }
 
         public async Task<List<Podcast>> Podcasts(string lang = "", string category = "", string excludeCategory = "'", int max = 10, DateTime? since = null)
         {
-            var endpoint = GetAuthorizedRequest("recent/feeds")
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("max", max),
+                new ApiParameter("lang", lang),
+                new ApiParameter("category", category),
+                new ApiParameter("excludeCategory", excludeCategory),
+                new ApiParameter("since", since),
+            };
 
-            if (!string.IsNullOrEmpty(lang))
-            {
-                endpoint.SetQueryParam("lang", lang);
-            }
-
-            if (!string.IsNullOrEmpty(category))
-            {
-                endpoint.SetQueryParam("category", category);
-            }
-
-            if (!string.IsNullOrEmpty(excludeCategory))
-            {
-                endpoint.SetQueryParam("excludeCategory", excludeCategory);
-            }
-
-            if (since != null)
-            {
-                endpoint.SetQueryParam("since", ToUnixTimeStamp(since));
-            }
-
-            var feedsResponse = await GetResponse<FeedsResponse>(endpoint);
-
+            var feedsResponse = await SendRequest<FeedsResponse>("recent/feeds", parameters);
             return feedsResponse.Podcasts;
         }
 
         public async Task<List<Podcast>> NewPodcasts(int max = 10, DateTime? since = null)
         {
-            var endpoint = GetAuthorizedRequest("recent/newfeeds")
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("max", max),
+                new ApiParameter("since", since),
+            };
 
-            if (since != null)
-            {
-                endpoint.SetQueryParam("since", ToUnixTimeStamp(since));
-            }
-
-            var feedsResponse = await GetResponse<FeedsResponse>(endpoint);
-
+            var feedsResponse = await SendRequest<FeedsResponse>("recent/newfeeds", parameters);
             return feedsResponse.Podcasts;
         }
 
         public async Task<List<Soundbite>> Soundbites(int max = 10)
         {
-            var endpoint = GetAuthorizedRequest("recent/soundbites")
-                .SetQueryParam("max", max);
+            var parameters = new ApiParameter[]{
+                new ApiParameter("max", max),
+            };
 
-            var soundbitesResponse = await GetResponse<SoundbitesResponse>(endpoint);
-
+            var soundbitesResponse = await SendRequest<SoundbitesResponse>("recent/soundbites", parameters);
             return soundbitesResponse.Soundbites;
         }
     }
