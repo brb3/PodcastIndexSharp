@@ -1,8 +1,10 @@
 namespace PodcastIndexSharp.Test.Clients;
 using System;
+using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using PodcastIndexSharp.Clients;
+using PodcastIndexSharp.Exceptions;
 using Xunit;
 
 internal class ExposedBaseClient : BaseClient
@@ -20,6 +22,15 @@ internal class ExposedBaseClient : BaseClient
     {
         return base.ToUnixTimeStamp(dateTime);
     }
+
+    public new async Task<T> GetResponse<T>(IFlurlRequest request) where T : AbstractResponse
+    {
+        return await base.GetResponse<T>(request);
+    }
+}
+
+internal class TestResponse : AbstractResponse
+{
 }
 
 public class BaseClientTest : ClientTest
@@ -32,7 +43,7 @@ public class BaseClientTest : ClientTest
     }
 
     [Fact]
-    public void GetAuthorizedRequestTest()
+    public void TestGetAuthorizedRequest()
     {
         var path = "testPath";
 
@@ -51,7 +62,7 @@ public class BaseClientTest : ClientTest
     }
 
     [Fact]
-    public void ToUnixTimeStampTests()
+    public void TestToUnixTimeStamp()
     {
         // Should return an empty string when a null DateTime is passed
         Assert.Equal(string.Empty, baseClient.ToUnixTimeStamp(null));
@@ -66,5 +77,28 @@ public class BaseClientTest : ClientTest
         var itParses = int.TryParse(timestamp, out timestampInt);
         Assert.IsType<int>(timestampInt);
         Assert.True(itParses);
+    }
+
+    [Fact]
+    public async Task TestGetResponse()
+    {
+        var baseUrl = "https://example.com/";
+        var fragment = "test/endpoint";
+        var request = baseClient.GetAuthorizedRequest(fragment);
+
+        // Should succeed and give back the same type.
+        httpTest.RespondWithJson(new { Status = true });
+        var successResponse = await baseClient.GetResponse<TestResponse>(request);
+        Assert.IsType<TestResponse>(successResponse);
+        httpTest.ShouldHaveCalled(baseUrl + fragment);
+
+
+        // Should throw with ResponseException
+        httpTest.RespondWithJson(new { Status = false }, 200);
+        await Assert.ThrowsAsync<ResponseException>(async () => await baseClient.GetResponse<TestResponse>(request));
+
+        // Should throw with NetworkException
+        httpTest.RespondWithJson(new { }, 500);
+        await Assert.ThrowsAsync<NetworkException>(async () => await baseClient.GetResponse<TestResponse>(request));
     }
 }
