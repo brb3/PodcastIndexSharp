@@ -6,6 +6,9 @@ namespace PodcastIndexSharp.Clients
 
     public interface ICategoriesClient
     {
+        /// <summary>
+        /// Return all the possible categories supported by the index.
+        /// </summary>
         Task<List<Category>> List();
     }
 }

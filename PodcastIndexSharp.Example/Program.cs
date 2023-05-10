@@ -41,7 +41,7 @@ namespace Example
             var searchResponse = await podcastIndex.Search().Podcasts(searchTerm);
             Console.WriteLine($"Podcasts by Search Term: Found {searchResponse.Count} podcasts when searching for \"{searchTerm}\"");
 
-            // Serach for a podcast episode by person
+            // Search for a podcast episode by person
             var person = "Adam Curry";
             var episodeSearchResponse = await podcastIndex.Search().EpisodesByPerson(person);
             Console.WriteLine($"Episodes by Person: Found {episodeSearchResponse.Count} episodes when searching by person \"{person}\"");

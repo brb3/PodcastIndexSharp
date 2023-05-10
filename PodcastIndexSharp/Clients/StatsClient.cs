@@ -1,7 +1,6 @@
 namespace PodcastIndexSharp.Clients
 {
     using System.Threading.Tasks;
-    using Flurl.Http;
     using PodcastIndexSharp.Model;
     using PodcastIndexSharp.Response;
 
@@ -11,10 +10,7 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<Stats> Current()
         {
-            var endpoint = GetAuthorizedRequest("stats/current");
-
-            var statsResponse = await endpoint.GetJsonAsync<StatsResponse>();
-
+            var statsResponse = await SendRequest<StatsResponse>("stats/current", new ApiParameter[] { });
             return statsResponse.Stats;
         }
     }

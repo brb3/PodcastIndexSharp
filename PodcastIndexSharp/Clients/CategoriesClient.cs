@@ -2,7 +2,6 @@ namespace PodcastIndexSharp.Clients
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Flurl.Http;
     using PodcastIndexSharp.Model;
     using PodcastIndexSharp.Response;
 
@@ -12,10 +11,7 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<List<Category>> List()
         {
-            var endpoint = GetAuthorizedRequest("/categories/list");
-
-            var categoriesListResponse = await endpoint.GetJsonAsync<CategoriesListResponse>();
-
+            var categoriesListResponse = await SendRequest<CategoriesListResponse>("categories/list", new ApiParameter[] { });
             return categoriesListResponse.Categories;
         }
     }

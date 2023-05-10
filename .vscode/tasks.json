@@ -13,5 +13,15 @@
             ],
             "problemMatcher": "$msCompile"
         },
+        {
+            "label": "generate coverage report",
+            "command": "reportgenerator",
+            "type": "shell",
+            "args": [
+                "-reports:${workspaceFolder}/PodcastIndexSharp.Test/TestResults/lcov.info",
+                "-targetdir:${workspaceFolder}/PodcastIndexSharp.Test/TestResults/coveragereport"
+            ],
+            "problemMatcher": []
+        }
     ]
 }
