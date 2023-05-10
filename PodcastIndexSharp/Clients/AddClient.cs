@@ -8,7 +8,7 @@ namespace PodcastIndexSharp.Clients
     {
         public AddClient(PodcastIndexConfig config) : base(config) { }
 
-        public async Task<AddResponse> ByFeedUrl(string url, int iTunesId, string chash)
+        public async Task<AddResponse> ByFeedUrl(string url, uint iTunesId, string chash)
         {
             var parameters = new ApiParameter[]{
                 new ApiParameter("url", url),
@@ -20,7 +20,7 @@ namespace PodcastIndexSharp.Clients
             return addResponse;
         }
 
-        public async Task<AddResponse> ByiTunesId(int iTunesId)
+        public async Task<AddResponse> ByiTunesId(uint iTunesId)
         {
             var parameters = new ApiParameter[]{
                 new ApiParameter("id", iTunesId)

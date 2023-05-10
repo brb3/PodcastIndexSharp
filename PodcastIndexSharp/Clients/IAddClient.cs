@@ -13,7 +13,7 @@ namespace PodcastIndexSharp.Clients
         /// <param name="iTunesId"></param>
         /// <param name="chash">MD5 hash of the title, link, feedLanguage, generator, author, ownerName, ownerEmail. Allows for easier duplicate checking.</param>
         /// <returns></returns>
-        Task<AddResponse> ByFeedUrl(string url, int iTunesId, string chash);
+        Task<AddResponse> ByFeedUrl(string url, uint iTunesId, string chash);
 
         /// <summary>
         /// This call adds a podcast to the index using its iTunes ID.
@@ -21,6 +21,6 @@ namespace PodcastIndexSharp.Clients
         /// </summary>
         /// <param name="iTunesId"></param>
         /// <returns></returns>
-        Task<AddResponse> ByiTunesId(int iTunesId);
+        Task<AddResponse> ByiTunesId(uint iTunesId);
     }
 }

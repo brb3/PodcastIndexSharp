@@ -12,6 +12,6 @@ namespace PodcastIndexSharp.Clients
         /// <param name="id">The PodcastIndex Feed ID</param>
         /// <param name="url">Podcast feed URL </param>
         /// <returns></returns>
-        Task<HubResponse> PubNotify(int? id, string url);
+        Task<HubResponse> PubNotify(uint? id, string url);
     }
 }

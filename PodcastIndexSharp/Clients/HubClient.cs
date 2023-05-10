@@ -8,7 +8,7 @@ namespace PodcastIndexSharp.Clients
     {
         public HubClient(PodcastIndexConfig config) : base(config) { }
 
-        public async Task<HubResponse> PubNotify(int? id, string url)
+        public async Task<HubResponse> PubNotify(uint? id, string url)
         {
             var parameters = new ApiParameter[]{
                 new ApiParameter("id", id),
