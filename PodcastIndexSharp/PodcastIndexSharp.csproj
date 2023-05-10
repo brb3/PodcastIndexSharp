@@ -8,7 +8,7 @@
     <Authors>Bobby Burden III</Authors>
     <Company>brb3</Company>
     <Description>.NET Standard client library for interacting with the PodcastIndex.org API.</Description>
-    <RepositoryUrl>https://gitlab.com/brb3/podcastindexsharp</RepositoryUrl>
+    <RepositoryUrl>https://github.com/brb3/PodcastIndexSharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>podcast,podcastindex</PackageTags>
