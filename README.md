@@ -2,7 +2,7 @@
 
 .NET Standard client library for interacting with the PodcastIndex.org API.
 
-Currently just supports reading from the API.
+Supports reading from and writing to the Index.
 
 ## Getting Started
 
