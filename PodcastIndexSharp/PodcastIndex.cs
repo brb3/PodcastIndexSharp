@@ -18,6 +18,10 @@ namespace PodcastIndexSharp
 
         private ICategoriesClient CategoriesClient { get; set; }
 
+        private IHubClient HubClient { get; set; }
+
+        private IAddClient AddClient { get; set; }
+
         public PodcastIndex(PodcastIndexConfig config,
             ISearchClient searchClient,
             IPodcastsClient podcastsClient,
@@ -25,7 +29,9 @@ namespace PodcastIndexSharp
             IRecentClient recentClient,
             IValueClient valueClient,
             IStatsClient statsClient,
-            ICategoriesClient categoriesClient) : base(config)
+            ICategoriesClient categoriesClient,
+            IHubClient hubClient,
+            IAddClient addClient) : base(config)
         {
             SearchClient = searchClient;
             PodcastsClient = podcastsClient;
@@ -34,6 +40,8 @@ namespace PodcastIndexSharp
             ValueClient = valueClient;
             StatsClient = statsClient;
             CategoriesClient = categoriesClient;
+            HubClient = hubClient;
+            AddClient = addClient;
         }
 
         public ISearchClient Search() => SearchClient;
@@ -49,5 +57,9 @@ namespace PodcastIndexSharp
         public IStatsClient Stats() => StatsClient;
 
         public ICategoriesClient Categories() => CategoriesClient;
+
+        public IHubClient Hub() => HubClient;
+
+        public IAddClient Add() => AddClient;
     }
 }

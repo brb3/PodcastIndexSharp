@@ -20,8 +20,10 @@ namespace PodcastIndexSharp
             config.GetSection(PodcastIndexConfig.Section).Bind(podcastIndexConfig);
 
             services.AddSingleton<PodcastIndexConfig>(podcastIndexConfig);
+            services.AddSingleton<IAddClient, AddClient>();
             services.AddSingleton<ICategoriesClient, CategoriesClient>();
             services.AddSingleton<IEpisodesClient, EpisodesClient>();
+            services.AddSingleton<IHubClient, HubClient>();
             services.AddSingleton<IPodcastsClient, PodcastsClient>();
             services.AddSingleton<IRecentClient, RecentClient>();
             services.AddSingleton<ISearchClient, SearchClient>();

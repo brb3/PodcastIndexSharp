@@ -17,7 +17,7 @@ namespace PodcastIndexSharp
         IPodcastsClient Podcasts();
 
         /// <summary>
-        /// Find details about one or more episodes of a podcats or podcats.
+        /// Find details about one or more episodes of a podcast or podcast.
         /// </summary>
         /// <returns></returns>
         IEpisodesClient Episodes();
@@ -29,7 +29,7 @@ namespace PodcastIndexSharp
         IRecentClient Recent();
 
         /// <summary>
-        /// The podcat's "Value for Value" information.
+        /// The podcast's "Value for Value" information.
         /// </summary>
         /// <returns></returns>
         IValueClient Value();
@@ -45,5 +45,19 @@ namespace PodcastIndexSharp
         /// </summary>
         /// <returns></returns>
         ICategoriesClient Categories();
+
+        /// <summary>
+        /// Notify the index that a feed has changed
+        /// </summary>
+        /// <returns></returns>
+        IHubClient Hub();
+
+        /// <summary>
+        /// Add new podcast feeds to the index.
+        ///
+        /// NOTE: To add to the index, the API Key must have write or publisher permissions.
+        /// </summary>
+        /// <returns></returns>
+        IAddClient Add();
     }
 }

@@ -5,7 +5,12 @@
     "dotnet-test-explorer.testArguments": "/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./TestResults/lcov.info",
     "dotnet-test-explorer.testProjectPath": "**/*.Test.csproj",
     "cSpell.words": [
+        "byfeedurl",
+        "byitunesid",
+        "chash",
         "fulltext",
-        "Newtonsoft"
+        "itunesid",
+        "Newtonsoft",
+        "pubnotify"
     ]
 }
