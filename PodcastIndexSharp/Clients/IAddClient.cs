@@ -10,10 +10,10 @@ namespace PodcastIndexSharp.Clients
         /// If a feed already exists, you will get its existing Feed ID returned in the response object.
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="iTunesId"></param>
         /// <param name="chash">MD5 hash of the title, link, feedLanguage, generator, author, ownerName, ownerEmail. Allows for easier duplicate checking.</param>
+        /// <param name="iTunesId"></param>
         /// <returns></returns>
-        Task<AddResponse> ByFeedUrl(string url, uint iTunesId, string chash);
+        Task<AddResponse> ByFeedUrl(string url, string chash, uint? iTunesId = null);
 
         /// <summary>
         /// This call adds a podcast to the index using its iTunes ID.

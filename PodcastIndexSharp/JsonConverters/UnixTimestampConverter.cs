@@ -10,7 +10,7 @@ namespace PodcastIndexSharp.JsonConverters
             return typeof(DateTime).IsAssignableFrom(objectType);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
         {
             var timestamp = serializer.Deserialize<long>(reader);
             var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
@@ -18,7 +18,7 @@ namespace PodcastIndexSharp.JsonConverters
             return dateTime.AddSeconds(timestamp).ToLocalTime();
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }

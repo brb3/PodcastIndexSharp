@@ -2,11 +2,11 @@ namespace PodcastIndexSharp.Model
 {
     public class ValueDestination
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public string Address { get; set; }
+        public string Address { get; set; } = null!;
 
-        public string Type { get; set; }
+        public string Type { get; set; } = null!;
 
         public int Split { get; set; }
 

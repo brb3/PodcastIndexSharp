@@ -1,5 +1,6 @@
 namespace PodcastIndexSharp.Clients
 {
+    using System;
     using System.Threading.Tasks;
     using PodcastIndexSharp.Model;
     using PodcastIndexSharp.Response;
@@ -8,11 +9,17 @@ namespace PodcastIndexSharp.Clients
     {
         public HubClient(PodcastIndexConfig config) : base(config) { }
 
-        public async Task<HubResponse> PubNotify(uint? id, string url)
+        public async Task<HubResponse> PubNotify(uint? id = null, Uri? url = null)
         {
-            var parameters = new ApiParameter[]{
-                new ApiParameter("id", id),
-                new ApiParameter("url", url)
+            if (id == null && url == null)
+            {
+                throw new ArgumentException("Either the id or the url is required.");
+            }
+
+            var parameters = new ApiParameter[]
+            {
+                new ApiParameter("url", url),
+                new ApiParameter("id", id)
             };
 
             var hubResponse = await SendRequest<HubResponse>("hub/pubnotify", parameters);

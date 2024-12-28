@@ -26,7 +26,11 @@ namespace PodcastIndexSharp.Clients
         /// </param>
         /// <param name="max">Maximum number of results to return. &gt;=1 and &lt;= 1000</param>
         /// <returns></returns>
-        Task<List<Episode>> Episodes(string exclude = "", bool fulltext = false, int max = 10, int? beforeId = null);
+        Task<List<Episode>> Episodes(
+            string? exclude = null,
+            bool? fulltext = null,
+            int? max = null,
+            int? beforeId = null);
 
         /// <summary>
         /// This call returns the most recent max feeds, in reverse chronological order.
@@ -53,21 +57,35 @@ namespace PodcastIndexSharp.Clients
         /// </param>
         /// <param name="max">Maximum number of results to return. &gt;= 1 and &lt;= 1000</param>
         /// <returns></returns>
-        Task<List<Podcast>> Podcasts(string lang = "", string category = "", string excludeCategory = "", int max = 10, DateTime? since = null);
+        Task<List<Podcast>> Podcasts(
+            string? lang = null,
+            string? category = null,
+            string? excludeCategory = null,
+            int? max = null,
+            DateTime? since = null);
 
         /// <summary>
         /// This call returns every new feed added to the index over the past 24 hours in reverse chronological order.
         /// </summary>
-        /// <param name="since">Return items since the specified time.</param>
         /// <param name="max">Maximum number of results to return. &gt;= 1 and &lt;= 1000</param>
+        /// <param name="since">Return items since the specified time.</param>
+        /// <param name="descending">If true, return the results in descending order.</param>
         /// <returns></returns>
-        Task<List<Podcast>> NewPodcasts(int max = 10, DateTime? since = null);
+        Task<List<Podcast>> NewPodcasts(int? max = null, DateTime? since = null, bool? descending = null);
+
+        /// <summary>
+        /// This call returns feeds that have added a value tag in reverse chronological order.
+        /// </summary>
+        /// <param name="max"></param>
+        /// <param name="since"></param>
+        /// <returns></returns>
+        Task<List<Podcast>> NewValueFeeds(int? max = null, DateTime? since = null);
 
         /// <summary>
         /// This call returns the most recent max soundbites that the index has discovered.
         /// </summary>
         /// <param name="max">Maximum number of soundbites to return. &gt;=1 and &lt;= 1000</param>
         /// <returns></returns>
-        Task<List<Soundbite>> Soundbites(int max = 10);
+        Task<List<Soundbite>> Soundbites(int? max = null);
     }
 }

@@ -7,6 +7,6 @@ namespace PodcastIndexSharp.Response
     public class RecentEpisodesResponse : AbstractResponse
     {
         [JsonProperty("items")]
-        public List<Episode> Episodes { get; set; }
+        public List<Episode> Episodes { get; set; } = new List<Episode>();
     }
 }

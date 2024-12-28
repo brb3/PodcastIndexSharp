@@ -23,5 +23,24 @@ namespace PodcastIndexSharp.Clients
         /// <param name="url">Podcast feed URL.</param>
         /// <returns></returns>
         Task<Value> ByFeedUrl(Uri url);
+
+        /// <summary>
+        /// The podcast's "Value for Value" information<br />
+        /// This call returns the information for supporting the podcast via one of the "Value for Value"
+        /// methods from podcast GUID.
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        Task<Value> ByFeedGUID(Guid guid);
+
+        /// <summary>
+        /// The podcast's "Value for Value" information<br />
+        /// This call returns the information for supporting the podcast episode via one of the "Value for Value"
+        /// methods from podcast GUID and the episode GUID.
+        /// </summary>
+        /// <param name="podcastGUID"></param>
+        /// <param name="episodeGUID"></param>
+        /// <returns></returns>
+        Task<Value> ByEpisodeGUID(Guid podcastGUID, Guid episodeGUID);
     }
 }

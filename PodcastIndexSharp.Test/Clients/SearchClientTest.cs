@@ -7,7 +7,7 @@ using Xunit;
 
 public class SearchClientTest : ClientTest
 {
-    private SearchClient searchClient;
+    private readonly SearchClient searchClient;
 
     public SearchClientTest()
     {
@@ -22,7 +22,7 @@ public class SearchClientTest : ClientTest
     [InlineData("testQuery", Enums.SearchByTermValues.any, false, false, "q=testQuery&val=any")]
     [InlineData("testQuery", null, true, false, "q=testQuery&clean=")]
     [InlineData("testQuery", null, false, true, "q=testQuery&fulltext=")]
-    [InlineData("testQuery", Enums.SearchByTermValues.hive, true, true, "q=testQuery&val=hive&clean=&fulltext=")]
+    [InlineData("testQuery", Enums.SearchByTermValues.hive, true, true, "q=testQuery&clean=&fulltext=&val=hive")]
     public async Task TestPodcastsSearch(string query, Enums.SearchByTermValues? value, bool clean, bool fulltext, string param)
     {
         var baseUrl = "https://example.com/search/byterm?";

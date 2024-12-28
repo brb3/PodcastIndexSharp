@@ -6,6 +6,6 @@ namespace PodcastIndexSharp.Model
     {
         public int Id { get; set; }
 
-        public Uri Url { get; set; }
+        public Uri Url { get; set; } = null!;
     }
 }

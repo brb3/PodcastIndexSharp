@@ -8,17 +8,17 @@ namespace PodcastIndexSharp.Model
 
     public class Podcast : FeedMeta
     {
-        public Uri OriginalUrl { get; set; }
+        public Uri OriginalUrl { get; set; } = null!;
 
-        public Uri Link { get; set; }
+        public Uri Link { get; set; } = null!;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
-        public string OwnerName { get; set; }
+        public string OwnerName { get; set; } = null!;
 
-        public Uri Image { get; set; }
+        public Uri Image { get; set; } = null!;
 
-        public Uri Artwork { get; set; }
+        public Uri Artwork { get; set; } = null!;
 
         [JsonConverter(typeof(UnixTimestampConverter))]
         public DateTime LastUpdateTime { get; set; }
@@ -37,17 +37,17 @@ namespace PodcastIndexSharp.Model
 
         public HttpStatusCode LastHttpStatus { get; set; }
 
-        public string ContentType { get; set; }
+        public string ContentType { get; set; } = null!;
 
         public int? TrendScore { get; set; }
 
-        public string Generator { get; set; }
+        public string Generator { get; set; } = null!;
 
         public FeedType Type { get; set; }
 
         public int? Dead { get; set; }
 
-        public string Chash { get; set; }
+        public string Chash { get; set; } = null!;
 
         public int? EpisodeCount { get; set; }
 
@@ -59,8 +59,8 @@ namespace PodcastIndexSharp.Model
 
         public long? ImageUrlHash { get; set; }
 
-        public Value Value { get; set; }
+        public Value Value { get; set; } = null!;
 
-        public Funding Funding { get; set; }
+        public Funding Funding { get; set; } = null!;
     }
 }

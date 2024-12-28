@@ -41,12 +41,21 @@ namespace PodcastIndexSharp.Clients
         Task<Podcast> ByGUID(Guid guid);
 
         /// <summary>
+        /// This call returns all feeds that support the specified podcast namespace tag.
+        /// </summary>
+        /// <param name="tag">The tag value to search for.</param>
+        /// <param name="max">Maximum number of results to return.</param>
+        /// <param name="startAt">The starting point of the results.</param>
+        /// <returns></returns>
+        Task<List<Podcast>> ByTag(PodcastNamespaceTag tag, int? max = null, int? startAt = null);
+
+        /// <summary>
         /// This call returns all feeds marked with the specified medium tag value.
         /// </summary>
         /// <param name="medium">The medium value to search for.</param>
         /// <param name="max">Maximum number of results to return.</param>
         /// <returns></returns>
-        Task<List<Podcast>> ByMedium(PodcastMedium medium, int max = 10);
+        Task<List<Podcast>> ByMedium(PodcastMedium medium, int? max = null);
 
         /// <summary>
         /// Find details about a Podcast and its feed.<br />
@@ -74,7 +83,12 @@ namespace PodcastIndexSharp.Clients
         /// The `category` and `excludeCategory` filters can be used together to fine tune a very specific result set.
         /// </param>
         /// <returns></returns>
-        Task<List<Podcast>> Trending(int max = 10, string lang = null, string category = null, string excludeCategory = null, DateTime? since = null);
+        Task<List<Podcast>> Trending(
+            int? max = null,
+            string? lang = null,
+            string? category = null,
+            string? excludeCategory = null,
+            DateTime? since = null);
 
         /// <summary>
         /// This call returns all feeds that have been marked dead.

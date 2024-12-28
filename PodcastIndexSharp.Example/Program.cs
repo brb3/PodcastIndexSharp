@@ -1,4 +1,4 @@
-namespace Example
+namespace PodcastIndexSharp.Example
 {
     using System;
     using System.Threading.Tasks;
@@ -77,11 +77,11 @@ namespace Example
             Console.WriteLine($"Episode by ID: Episode ID {episodeId} is number \"{episode.EpisodeNumber}\" in Podcast title \"{episode.FeedTitle}\"");
 
             // Get a Random Episode
-            var randomEpisodes = await podcastIndex.Episodes().Random("", "", "", false, 1);
+            var randomEpisodes = await podcastIndex.Episodes().Random();
             Console.WriteLine($"Random Episode: Episode with number \"{randomEpisodes[0].Title}\" in Feed \"{randomEpisodes[0].FeedTitle}\" found.");
 
             // Get some recent episodes
-            var recentEpisodes = await podcastIndex.Recent().Episodes("", false, 1);
+            var recentEpisodes = await podcastIndex.Recent().Episodes(max: 1);
             Console.WriteLine($"Recent Episodes: The most recent episode is in Feed \"{recentEpisodes[0].FeedTitle}\"");
 
             // Recent Feeds

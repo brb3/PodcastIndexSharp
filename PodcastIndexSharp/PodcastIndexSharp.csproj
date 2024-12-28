@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>PodcastIndexSharp</PackageId>
     <PackageIcon>package-icon.png</PackageIcon>
-    <Version>1.1.0</Version>
+    <Version>2.0.0</Version>
     <Authors>Bobby Burden III</Authors>
     <Company>brb3</Company>
     <Description>.NET Standard client library for interacting with the PodcastIndex.org API.</Description>
@@ -12,6 +12,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>podcast,podcastindex</PackageTags>
+    <nullable>enable</nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>

@@ -25,7 +25,11 @@ namespace PodcastIndexSharp.Clients
         /// If not provided, field value is truncated to 100 words.
         /// </param>
         /// <returns></returns>
-        Task<List<Podcast>> Podcasts(string query, SearchByTermValues? values = null, bool clean = false, bool fulltext = false);
+        Task<List<Podcast>> Podcasts(
+            string query,
+            SearchByTermValues? values = null,
+            bool? clean = null,
+            bool? fulltext = null);
 
         /// <summary>
         /// This call returns all of the feeds where the title of the feed matches the search term (ignores case).
@@ -38,7 +42,12 @@ namespace PodcastIndexSharp.Clients
         /// </param>
         /// <param name="similar">If true, include similar matches in search response</param>
         /// <returns></returns>
-        Task<List<Podcast>> PodcastsByTitle(string query, SearchByTermValues? value = null, bool clean = false, bool fulltext = false, bool similar = false);
+        Task<List<Podcast>> PodcastsByTitle(
+            string query,
+            SearchByTermValues? value = null,
+            bool? clean = null,
+            bool? fulltext = null,
+            bool? similar = null);
 
         /// <summary>
         /// This call returns all of the feeds that match the search terms in the title, author or owner of the where the medium is music.
@@ -56,7 +65,13 @@ namespace PodcastIndexSharp.Clients
         /// If true, return the full text value of any text fields (ex: description). If false, field value is truncated to 100 words.
         /// </param>
         /// <returns></returns>
-        Task<List<Podcast>> MusicPodcasts(string query, SearchByTermValues? value = null, bool iTunesOnly = false, int max = 10, bool clean = false, bool fulltext = false);
+        Task<List<Podcast>> MusicPodcasts(
+            string query,
+            SearchByTermValues? value = null,
+            bool? iTunesOnly = null,
+            int? max = null,
+            bool? clean = null,
+            bool? fulltext = null);
 
         /// <summary>
         /// This call returns all of the episodes where the specified person is mentioned.
@@ -66,7 +81,8 @@ namespace PodcastIndexSharp.Clients
         /// If true, return the full text value of any text fields (ex: description).
         /// If false, field value is truncated to 100 words.
         /// </param>
+        /// <param name="max">Maximum number of results to return.</param>
         /// <returns></returns>
-        Task<List<Episode>> EpisodesByPerson(string person, bool fulltext = false);
+        Task<List<Episode>> EpisodesByPerson(string person, bool? fulltext = null, int? max = null);
     }
 }

@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/PodcastIndexSharp.Example/bin/Debug/net5.0/PodcastIndexSharp.Example.dll",
+            "program": "${workspaceFolder}/PodcastIndexSharp.Example/bin/Debug/net9.0/PodcastIndexSharp.Example.dll",
             "args": [],
             "cwd": "${workspaceFolder}/PodcastIndexSharp.Example",
             "console": "internalConsole",

@@ -9,7 +9,7 @@ namespace PodcastIndexSharp.Response
     public class TrendingResponse : AbstractResponse
     {
         [JsonProperty("feeds")]
-        public List<Podcast> Podcasts { get; set; }
+        public List<Podcast> Podcasts { get; set; } = new List<Podcast>();
 
         public int Count { get; set; }
 

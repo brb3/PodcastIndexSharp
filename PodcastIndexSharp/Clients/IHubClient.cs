@@ -1,5 +1,6 @@
 namespace PodcastIndexSharp.Clients
 {
+    using System;
     using System.Threading.Tasks;
     using PodcastIndexSharp.Response;
 
@@ -12,6 +13,6 @@ namespace PodcastIndexSharp.Clients
         /// <param name="id">The PodcastIndex Feed ID</param>
         /// <param name="url">Podcast feed URL </param>
         /// <returns></returns>
-        Task<HubResponse> PubNotify(uint? id, string url);
+        Task<HubResponse> PubNotify(uint? id = null, Uri? url = null);
     }
 }

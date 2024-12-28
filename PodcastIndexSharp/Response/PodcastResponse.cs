@@ -6,6 +6,6 @@ namespace PodcastIndexSharp.Response
     public class PodcastResponse : AbstractResponse
     {
         [JsonProperty("feed")]
-        public Podcast Podcast { get; set; }
+        public Podcast Podcast { get; set; } = null!;
     }
 }

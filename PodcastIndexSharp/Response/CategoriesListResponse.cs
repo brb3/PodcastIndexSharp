@@ -7,7 +7,7 @@ namespace PodcastIndexSharp.Response
     public class CategoriesListResponse : AbstractResponse
     {
         [JsonProperty("feeds")]
-        public List<Category> Categories { get; set; }
+        public List<Category> Categories { get; set; } = new List<Category>();
 
         public int Count { get; set; }
     }

@@ -13,7 +13,8 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<Podcast> ByFeedId(uint id)
         {
-            var parameters = new ApiParameter[]{
+            var parameters = new ApiParameter[]
+            {
                 new ApiParameter("id", id)
             };
 
@@ -23,7 +24,8 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<Podcast> ByFeedUrl(System.Uri url)
         {
-            var parameters = new ApiParameter[]{
+            var parameters = new ApiParameter[]
+            {
                 new ApiParameter("url", url)
             };
 
@@ -33,7 +35,8 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<Podcast> ByiTunesId(uint id)
         {
-            var parameters = new ApiParameter[]{
+            var parameters = new ApiParameter[]
+            {
                 new ApiParameter("id", id)
             };
 
@@ -41,9 +44,15 @@ namespace PodcastIndexSharp.Clients
             return podcastResponse.Podcast;
         }
 
-        public async Task<List<Podcast>> Trending(int max = 10, string lang = null, string category = null, string excludeCategory = null, DateTime? since = null)
+        public async Task<List<Podcast>> Trending(
+            int? max = null,
+            string? lang = null,
+            string? category = null,
+            string? excludeCategory = null,
+            DateTime? since = null)
         {
-            var parameters = new ApiParameter[]{
+            var parameters = new ApiParameter[]
+            {
                 new ApiParameter("max", max),
                 new ApiParameter("since", since),
                 new ApiParameter("lang", lang),
@@ -63,7 +72,8 @@ namespace PodcastIndexSharp.Clients
 
         public async Task<Podcast> ByGUID(Guid guid)
         {
-            var parameters = new ApiParameter[]{
+            var parameters = new ApiParameter[]
+            {
                 new ApiParameter("guid", guid)
             };
 
@@ -71,9 +81,25 @@ namespace PodcastIndexSharp.Clients
             return podcastResponse.Podcast;
         }
 
-        public async Task<List<Podcast>> ByMedium(PodcastMedium medium, int max = 10)
+        public async Task<List<Podcast>> ByTag(PodcastNamespaceTag tag, int? max = null, int? startAt = null)
         {
-            var parameters = new ApiParameter[]{
+            var parameters = new ApiParameter[]
+            {
+                new ApiParameter(tag == PodcastNamespaceTag.Value
+                    ? "podcast-value"
+                    : "podcast-valueTimeSplit", true),
+                new ApiParameter("max", max),
+                new ApiParameter("startAt", startAt)
+            };
+
+            var feedsResponse = await SendRequest<FeedsResponse>("podcasts/bytag", parameters);
+            return feedsResponse.Podcasts;
+        }
+
+        public async Task<List<Podcast>> ByMedium(PodcastMedium medium, int? max = null)
+        {
+            var parameters = new ApiParameter[]
+            {
                 new ApiParameter("medium", medium),
                 new ApiParameter("max", max)
             };

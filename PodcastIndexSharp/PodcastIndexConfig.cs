@@ -8,8 +8,8 @@ namespace PodcastIndexSharp
 
         public string UserAgent { get; set; } = "PodcastIndexSharp";
 
-        public string AuthKey { get; set; }
+        public string AuthKey { get; set; } = null!;
 
-        public string Secret { get; set; }
+        public string Secret { get; set; } = null!;
     }
 }
