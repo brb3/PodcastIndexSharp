@@ -5,13 +5,26 @@
     "dotnet-test-explorer.testArguments": "/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./TestResults/lcov.info",
     "dotnet-test-explorer.testProjectPath": "**/*.Test.csproj",
     "cSpell.words": [
+        "aponly",
+        "byepisodeguid",
         "byfeedid",
         "byfeedurl",
+        "byguid",
+        "byid",
         "byitunesid",
+        "bymedium",
+        "byperson",
+        "bypodcastguid",
+        "bytag",
+        "byterm",
+        "bytitle",
         "chash",
         "fulltext",
         "itunesid",
+        "newfeeds",
         "Newtonsoft",
+        "newvaluefeeds",
+        "podcastguid",
         "pubnotify"
     ]
 }

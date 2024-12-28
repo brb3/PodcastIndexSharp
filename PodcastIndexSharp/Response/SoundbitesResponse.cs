@@ -7,7 +7,7 @@ namespace PodcastIndexSharp.Response
     public class SoundbitesResponse : AbstractResponse
     {
         [JsonProperty("items")]
-        public List<Soundbite> Soundbites { get; set; }
+        public List<Soundbite> Soundbites { get; set; } = new List<Soundbite>();
 
         public int Count { get; set; }
     }

@@ -8,7 +8,7 @@ namespace PodcastIndexSharp.Response
     {
         // This is used so that `items` and `episodes` can be supported in the JSON response.
         // Note that "/episodes/random" and "/episodes/byfeedid" use an otherwise similar structure.
-        private List<Episode> _episodes;
+        private List<Episode> _episodes = new List<Episode>();
 
         [JsonProperty("items")]
         public List<Episode> Episodes
@@ -18,7 +18,7 @@ namespace PodcastIndexSharp.Response
         }
 
         [JsonProperty("episodes")]
-        public List<Episode> RandomEpisodes { get; set; }
+        public List<Episode> RandomEpisodes { get; set; } = new List<Episode>();
 
         public int Count { get; set; }
     }

@@ -4,14 +4,14 @@ namespace PodcastIndexSharp.Model
 
     public class FeedMeta : FeedBase
     {
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
 
-        public string Author { get; set; }
+        public string Author { get; set; } = null!;
 
-        public uint? iTunesId { get; set; }
+        public uint? iTunesId { get; set; } = null!;
 
-        public string Language { get; set; }
+        public string Language { get; set; } = null!;
 
-        public Dictionary<uint, string> Categories { get; set; }
+        public Dictionary<uint, string> Categories { get; set; } = null!;
     }
 }

@@ -5,6 +5,7 @@ using Flurl;
 using Flurl.Http;
 using PodcastIndexSharp.Clients;
 using PodcastIndexSharp.Exceptions;
+using PodcastIndexSharp.Response;
 using Xunit;
 
 internal class ExposedBaseClient : BaseClient

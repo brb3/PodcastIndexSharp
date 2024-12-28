@@ -9,13 +9,13 @@ namespace PodcastIndexSharp.Model
     {
         public long Id { get; set; }
 
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
 
-        public Uri Link { get; set; }
+        public Uri Link { get; set; } = null!;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
-        public string Guid { get; set; }
+        public string Guid { get; set; } = null!;
 
         [JsonConverter(typeof(UnixTimestampConverter))]
         public DateTime DatePublished { get; set; }
@@ -23,9 +23,9 @@ namespace PodcastIndexSharp.Model
         [JsonConverter(typeof(UnixTimestampConverter))]
         public DateTime DateCrawled { get; set; }
 
-        public Uri EnclosureUrl { get; set; }
+        public Uri EnclosureUrl { get; set; } = null!;
 
-        public string EnclosureType { get; set; }
+        public string EnclosureType { get; set; } = null!;
 
         public long EnclosureLength { get; set; }
 
@@ -36,28 +36,28 @@ namespace PodcastIndexSharp.Model
         [JsonProperty("Episode")]
         public int? EpisodeNumber { get; set; }
 
-        public string EpisodeType { get; set; }
+        public string EpisodeType { get; set; } = null!;
 
         public int? Season { get; set; }
 
-        public Uri Image { get; set; }
+        public Uri Image { get; set; } = null!;
 
         public int? FeedItunesId { get; set; }
 
-        public Uri FeedImage { get; set; }
+        public Uri FeedImage { get; set; } = null!;
 
         public int? FeedId { get; set; }
 
-        public Uri FeedUrl { get; set; }
+        public Uri FeedUrl { get; set; } = null!;
 
-        public string FeedAuthor { get; set; }
+        public string FeedAuthor { get; set; } = null!;
 
-        public string FeedTitle { get; set; }
+        public string FeedTitle { get; set; } = null!;
 
-        public string FeedLanguage { get; set; }
+        public string FeedLanguage { get; set; } = null!;
 
-        public Uri ChaptersUrl { get; set; }
+        public Uri ChaptersUrl { get; set; } = null!;
 
-        public Uri TranscriptUrl { get; set; }
+        public Uri TranscriptUrl { get; set; } = null!;
     }
 }

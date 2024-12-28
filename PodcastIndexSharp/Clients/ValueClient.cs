@@ -24,5 +24,26 @@ namespace PodcastIndexSharp.Clients
             var valueResponse = await SendRequest<ValueResponse>("value/byfeedurl", parameters);
             return valueResponse.Value;
         }
+
+        public async Task<Value> ByFeedGUID(Guid guid)
+        {
+            var parameters = new ApiParameter[] { new ApiParameter("guid", guid) };
+
+            var valueResponse = await SendRequest<ValueResponse>("value/bypodcastguid", parameters);
+            return valueResponse.Value;
+        }
+
+        public async Task<Value> ByEpisodeGUID(Guid podcastGUID, Guid episodeGUID)
+        {
+            var parameters = new ApiParameter[]
+            {
+                new ApiParameter("podcastguid", podcastGUID),
+                new ApiParameter("episodeguid", episodeGUID)
+            };
+
+            var valueResponse = await SendRequest<ValueResponse>("value/byepisodeguid", parameters);
+            return valueResponse.Value;
+        }
+
     }
 }

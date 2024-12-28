@@ -9,6 +9,7 @@ namespace PodcastIndexSharp.Clients
     using Flurl.Http;
     using PodcastIndexSharp.Exceptions;
     using PodcastIndexSharp.Model;
+    using PodcastIndexSharp.Response;
 
     /// <summary>
     /// The Base API client that all PodcastIndex API calls use. This class should not be used directly.

@@ -4,8 +4,8 @@ namespace PodcastIndexSharp.Model
 
     public class Value
     {
-        public ValueModel Model { get; set; }
+        public ValueModel Model { get; set; } = null!;
 
-        public List<ValueDestination> Suggested { get; set; }
+        public List<ValueDestination> Suggested { get; set; } = null!;
     }
 }

@@ -4,6 +4,6 @@ namespace PodcastIndexSharp.Response
 
     public class EpisodeResponse : AbstractResponse
     {
-        public Episode Episode { get; set; }
+        public Episode Episode { get; set; } = null!;
     }
 }

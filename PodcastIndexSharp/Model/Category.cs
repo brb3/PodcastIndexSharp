@@ -4,6 +4,6 @@ namespace PodcastIndexSharp.Model
     {
         public uint? Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
     }
 }
