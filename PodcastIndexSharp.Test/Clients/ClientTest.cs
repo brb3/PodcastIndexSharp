@@ -4,7 +4,7 @@ using Flurl.Http.Testing;
 
 public class ClientTest
 {
-    protected PodcastIndexConfig podcastIndexConfig = new PodcastIndexConfig()
+    protected PodcastIndexConfig podcastIndexConfig = new()
     {
         BaseUrl = "https://example.com/",
         UserAgent = "Test",
@@ -12,5 +12,5 @@ public class ClientTest
         Secret = "abcdefg"
     };
 
-    protected HttpTest httpTest = new HttpTest();
+    protected HttpTest httpTest = new();
 }

@@ -7,7 +7,7 @@ using Xunit;
 
 public class CategoriesClientTest : ClientTest
 {
-    private CategoriesClient categoriesClient;
+    private readonly CategoriesClient categoriesClient;
 
     public CategoriesClientTest()
     {
@@ -24,10 +24,10 @@ public class CategoriesClientTest : ClientTest
 
         // Network level failure
         httpTest.RespondWithJson(new { }, 500);
-        await Assert.ThrowsAsync<NetworkException>(async () => await categoriesClient.List());
+        await Assert.ThrowsAsync<NetworkException>(categoriesClient.List);
 
         // API Responds but with "false" status.
         httpTest.RespondWithJson(new { Status = false }, 200);
-        await Assert.ThrowsAsync<ResponseException>(async () => await categoriesClient.List());
+        await Assert.ThrowsAsync<ResponseException>(categoriesClient.List);
     }
 }
