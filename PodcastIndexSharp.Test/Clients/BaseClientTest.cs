@@ -8,12 +8,8 @@ using PodcastIndexSharp.Exceptions;
 using PodcastIndexSharp.Response;
 using Xunit;
 
-internal class ExposedBaseClient : BaseClient
+internal class ExposedBaseClient(PodcastIndexConfig config) : BaseClient(config)
 {
-    public ExposedBaseClient(PodcastIndexConfig config) : base(config)
-    {
-    }
-
     public new IFlurlRequest GetAuthorizedRequest(string path)
     {
         return base.GetAuthorizedRequest(path);
@@ -36,7 +32,7 @@ internal class TestResponse : AbstractResponse
 
 public class BaseClientTest : ClientTest
 {
-    private ExposedBaseClient baseClient;
+    private readonly ExposedBaseClient baseClient;
 
     public BaseClientTest()
     {
