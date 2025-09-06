@@ -54,9 +54,20 @@ async Task RunExamples(IPodcastIndex podcastIndex)
     Console.WriteLine($"Podcast by GUID: Podcast \"{podcast.Title}\" is in language \"{podcast.Language}\"");
 
     // Look up a podcast by it's URL
-    var url = new System.Uri("http://feeds.feedburner.com/TheAdamCarollaPodcast");
+    var url = new Uri("http://feed.nashownotes.com/rss.xml");
     podcast = await podcastIndex.Podcasts().ByFeedUrl(url);
-    Console.WriteLine($"Podcast by URL: Podcast id {podcast.Id} found when searching with URL {url}");
+    Console.WriteLine($"Podcast by URL: Podcast id {podcast?.Id} with name \"{podcast?.Title}\" found when searching with URL {url}");
+
+    // Look up a podcast by a bad URL to see the Exception
+    var badUrl = new Uri("http://feed.nashownotes.com/rss-bad.xml");
+    try
+    {
+        podcast = await podcastIndex.Podcasts().ByFeedUrl(badUrl);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Podcast by Bad URL: Podcast is {(podcast == null ? "null" : "not null")} when searching with bad URL {badUrl}. Exception: {ex.GetType().Name} - {ex.Message}");
+    }
 
     // Find trending podcasts
     var trendingPodcasts = await podcastIndex.Podcasts().Trending(1);
