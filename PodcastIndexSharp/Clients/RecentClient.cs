@@ -41,8 +41,8 @@ namespace PodcastIndexSharp.Clients
             {
                 new ApiParameter("max", max),
                 new ApiParameter("lang", lang),
-                new ApiParameter("category", category),
-                new ApiParameter("excludeCategory", excludeCategory),
+                new ApiParameter("cat", category),
+                new ApiParameter("notcat", excludeCategory),
                 new ApiParameter("since", since),
             };
 
